@@ -2,6 +2,7 @@ pipeline {
     environment {
         dockerImage = ''
         imageName = 'nlafontaine/capstone-b-safe'
+        registryCred = 'Dockerhub'
         imageTag = "${env.BUILD_NUMBER}"
     }
     agent { label 'Java17'}
@@ -32,7 +33,7 @@ pipeline {
         stage('Publish Image') {
             steps {
                 script {
-                    docker.withRegistry('') {
+                    docker.withRegistry('', registryCred) {
                         dockerImage.push(imageTag)
                         dockerImage.push('latest')
                     }
