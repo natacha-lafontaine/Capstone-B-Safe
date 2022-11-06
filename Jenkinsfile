@@ -3,7 +3,7 @@ pipeline {
         dockerImage = ''
         imageName = 'capstone-b-safe'
         dockerRegistry = 'https://hub.docker.com/repository/docker/nlafontaine/capstone-b-safe'
-        imageTag = ${env.BUILD_NUMBER}
+        imageTag = "${env.BUILD_NUMBER}"
     }
     agent { label 'Java17'}
 
