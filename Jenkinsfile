@@ -1,6 +1,7 @@
 pipeline {
     environment {
         dockerImage = ''
+        imagename = 'capstone-b-safe'
     }
     agent { label 'Java17'}
 
@@ -23,7 +24,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    dockerImage = docker.build b-safe
+                    dockerImage = docker.build imagename
                 }
             }
         }   
