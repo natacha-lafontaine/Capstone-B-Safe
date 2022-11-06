@@ -2,6 +2,7 @@ pipeline {
     environment {
         dockerImage = ''
         imagename = 'capstone-b-safe'
+        dockerRegistry = 'https://hub.docker.com/repository/docker/nlafontaine/capstone-b-safe'
     }
     agent { label 'Java17'}
 
@@ -27,6 +28,16 @@ pipeline {
                     dockerImage = docker.build imagename
                 }
             }
-        }   
+        } 
+        stage('Publish Image') {
+            steps {
+                script {
+                    docker.withRegistry(dockerRegistry) {
+                        dockerImage.push("$env:BUILD_NUMBER")
+                        dockerImage.push('latest')
+                    }
+                }
+            }
+        }  
     }
 }
