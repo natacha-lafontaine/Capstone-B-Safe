@@ -19,7 +19,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                echo 'add deployment step later'
+                docker.withRegistry('https://hub.docker.com/repository/docker/nlafontaine/capstone-b-safe')
+                docker.build("b-safe:${env.BUILD_ID}").push('latest')
             }
         }   
     }
