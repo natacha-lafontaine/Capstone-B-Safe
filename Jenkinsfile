@@ -1,4 +1,7 @@
 pipeline {
+    environment {
+        dockerImage = ''
+    }
     agent { label 'Java17'}
 
     stages {
@@ -17,11 +20,10 @@ pipeline {
                 sh 'mvn test'
             }
         }
-        stage('Deploy') {
+        stage('Build Image') {
             steps {
                 script {
-                    docker.withRegistry('https://hub.docker.com/repository/docker/nlafontaine/capstone-b-safe')
-                    docker.build("b-safe:${env.BUILD_ID}").push('latest')
+                    dockerImage = docker.build b-safe
                 }
             }
         }   
