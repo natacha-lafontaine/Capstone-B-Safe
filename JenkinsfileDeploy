@@ -1,0 +1,26 @@
+pipeline {
+    environment {
+        dockerImage = ''
+        imageName = 'nlafontaine/capstone-b-safe'
+        registryCred = 'Dockerhub'
+        imageTag = "latest"
+    }
+    agent { label 'Jenkins-Slave2'}
+
+    options { 
+         skipDefaultCheckout()
+     }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'get image from Dockerhub'
+            }
+        }
+        stage('Run Image') {
+            steps {
+                echo 'run the image'
+            }
+        }  
+    }
+}

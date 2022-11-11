@@ -7,6 +7,10 @@ pipeline {
     }
     agent { label 'Java17'}
 
+    options { 
+         skipDefaultCheckout()
+     }
+
     stages {
         stage('Checkout') {
             steps {
