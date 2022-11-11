@@ -34,6 +34,15 @@ pipeline {
                 }
             }
         } 
+        stage('Test Image') {
+            steps {
+                script {
+                    dockerImage.inside {
+                        echo 'Test passed'
+                    }
+                }
+            }
+        }
         stage('Publish Image') {
             steps {
                 script {

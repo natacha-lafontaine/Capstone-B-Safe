@@ -18,12 +18,16 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'get image from Dockerhub'
+                script {
+                    docker.withRegistry('', registryCred) {
+                        dockerImage = docker.pull(imageName:imageTag)
+                    }
+                }
             }
         }
         stage('Run Image') {
             steps {
-                echo 'run the image'
+                dockerImage.run('-p 8090:8090')
             }
         }  
     }
