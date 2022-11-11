@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', registryCred) {
-                        dockerImage = docker.image(imageName:imageTag)
+                        dockerImage = docker.image(imageName)
                         dockerImage.pull()
                     }
                 }
