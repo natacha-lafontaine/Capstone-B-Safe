@@ -20,17 +20,11 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', registryCred) {
-                        dockerImage = docker.pull(imageName:imageTag)
+                        dockerImage = docker.image(imageName:imageTag)
+                        dockerImage.pull()
                     }
                 }
             }
-        }
-        stage('Run Image') {
-            steps {
-                script {
-                    dockerImage.run('-p 8090:8090')
-                }
-            }
-        }  
+        } 
     }
 }
