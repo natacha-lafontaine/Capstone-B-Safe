@@ -11,6 +11,10 @@ pipeline {
          skipDefaultCheckout()
      }
 
+     triggers {
+         upstream(upstreamProjects: 'B-Safe-Docker-Deployment')
+     }
+
     stages {
         stage('Checkout') {
             steps {
