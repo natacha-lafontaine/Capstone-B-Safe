@@ -29,7 +29,7 @@ pipeline {
         stage('Run image') {
             steps {
                 script {
-                    dockerImage.run('-name b-safe -p 8090:8090')
+                    dockerImage.run('--name b-safe -p 8090:8090')
                 }
             }
         }
