@@ -26,6 +26,9 @@ pipeline {
             steps {
                 sh 'mvn test'
             }
+            post {
+                junit skipOldReports: true, skipPublishingChecks: true, testResults: '/target/surefire-reports/*.xml'
+            }
         }
         stage('Build Image') {
             steps {
