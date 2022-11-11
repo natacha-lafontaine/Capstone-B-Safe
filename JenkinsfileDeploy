@@ -28,6 +28,8 @@ pipeline {
         } 
         stage('Run image') {
             steps {
+                sh 'docker ps -f name=b-safe -q | xargs --no-run-if-empty docker container stop'
+                sh 'docker container ls -a -fname=b-safe -q | xargs -r docker container rm'
                 script {
                     dockerImage.run('--name b-safe -p 8090:8090')
                 }
