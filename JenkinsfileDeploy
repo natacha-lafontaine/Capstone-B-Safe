@@ -26,5 +26,12 @@ pipeline {
                 }
             }
         } 
+        stage('Run image') {
+            steps {
+                script {
+                    dockerImage.run('-p 8090:8090')
+                }
+            }
+        }
     }
 }
