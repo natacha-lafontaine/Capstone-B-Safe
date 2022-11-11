@@ -3,12 +3,12 @@ pipeline {
         dockerImage = ''
         imageName = 'nlafontaine/capstone-b-safe'
         registryCred = 'Dockerhub'
-        imageTag = "latest"
     }
     agent { label 'Jenkins-Slave2'}
 
     options { 
          skipDefaultCheckout()
+         disableConcurrentBuilds()
      }
 
      triggers {
