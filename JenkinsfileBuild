@@ -5,7 +5,7 @@ pipeline {
         registryCred = 'Dockerhub'
         imageTag = "${env.BUILD_NUMBER}"
     }
-    agent any
+    agent { label 'Jenkins-Slave1'}
 
     options { 
          skipDefaultCheckout()
